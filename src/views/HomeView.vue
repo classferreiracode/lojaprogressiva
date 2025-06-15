@@ -127,7 +127,7 @@ const produtos = ref([
     {
         nome: 'Máscara Capilar Nutritiva',
         preco: 59.9,
-        precoOriginal: 69.9,
+        precoOriginal: 129.9,
         img: 'https://source.unsplash.com/300x200/?cosmetics',
         wishlist: false,
         slug: 'mascara-capilar-nutritiva',
