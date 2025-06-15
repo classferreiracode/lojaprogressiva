@@ -16,16 +16,16 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: 16
-        cache: 'yarn'
+        node-version: 18
+        cache: 'npm'
     - name: Install npm dependencies
-      run: yarn install --force
+      run: npm install --force
 
     - name: Clear cache
-      run: yarn cache clean
+      run: npm cache clean
 
     - name: Generate build
-      run: CI=false yarn build --no-lint
+      run: CI=false npm run build --no-lint
 
     - name: Share artifact inside workflow
       uses: actions/upload-artifact@v4
