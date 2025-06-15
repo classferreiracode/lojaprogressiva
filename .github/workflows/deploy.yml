@@ -1,0 +1,60 @@
+name: Deploy Vue via GitHub Actions com Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  job1:
+    name: Setup
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: 16
+        cache: 'yarn'
+    - name: Install npm dependencies
+      run: yarn install --force
+
+    - name: Clear cache
+      run: yarn cache clean
+
+    - name: Generate build
+      run: CI=false yarn build --no-lint
+
+    - name: Share artifact inside workflow
+      uses: actions/upload-artifact@v4
+      with:
+        name: vue-github-actions-build
+        path: dist/
+        overwrite: true
+
+  job2:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    needs: job1
+    steps:
+
+    - name: Download artifact
+      uses: actions/download-artifact@v4
+      with:
+        name: vue-github-actions-build
+
+    - name: Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: ${{ secrets.FTP_HOST }}
+        username: ${{ secrets.FTP_USER_PROD }}
+        password: ${{ secrets.FTP_PASSWORD_PROD }}
+        server-dir: /public_html/
+        exclude: |
+          **/.git*
+          **/.git*/**
+          **/.github*
+          **/.github*/**
