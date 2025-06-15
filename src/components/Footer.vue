@@ -62,10 +62,12 @@
                             <a href="#" class="text-gray-700 hover:text-pink-400 transition">FAQ</a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-700 hover:text-pink-400 transition">Trocas e Devoluções</a>
+                            <a href="https://www.b2cstore.com.br/politica-de-troca-e-devolucao?parceiro=50928" target="_blank"
+                               class="text-gray-700 hover:text-pink-400 transition">Trocas e Devoluções</a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-700 hover:text-pink-400 transition">Rastrear Pedido</a>
+                            <a href="https://www.b2cstore.com.br/rastreamento?parceiro=50928" target="_blank"
+                               class="text-gray-700 hover:text-pink-400 transition">Rastrear Pedido</a>
                         </li>
                         <li>
                             <a href="#" class="text-gray-700 hover:text-pink-400 transition">Grupo Vip</a>

@@ -1,5 +1,6 @@
 <template>
   <div>
+      <Banner/>
     <section class="py-12 container mx-auto max-w-lg">
       <h1 class="text-3xl font-bold mb-6">Entre em Contato</h1>
       <form class="space-y-4">
@@ -16,6 +17,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import Banner from "@/components/Banner.vue";
 
 const nome = ref('')
 const email = ref('')

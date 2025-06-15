@@ -7,7 +7,7 @@ import ContatoView from "@/views/ContatoView.vue";
 const routes = [
   { path: "/", name: "Home", component: HomeView },
   { path: "/loja", name: "Loja", component: LojaView },
-  { path: "/produto/:id", name: "Produto", component: ProdutoView },
+  { path: '/produto/:slug', name: 'produto', component: ProdutoView },
   { path: "/contato", name: "Contato", component: ContatoView },
 ];
 
