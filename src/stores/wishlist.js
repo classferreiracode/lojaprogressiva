@@ -7,7 +7,7 @@ export const useWishlistStore = defineStore("wishlist", {
   }),
   actions: {
     toggle(item) {
-      const index = this.items.findIndex((p) => p.nome === item.nome);
+      const index = this.items.findIndex((p) => p.title === item.title);
       if (index >= 0) {
         this.items.splice(index, 1);
       } else {
@@ -16,7 +16,7 @@ export const useWishlistStore = defineStore("wishlist", {
       this.save();
     },
     isInWishlist(item) {
-      return this.items.some((p) => p.nome === item.nome);
+      return this.items.some((p) => p.title === item.title);
     },
     save() {
       localStorage.setItem("wishlist", JSON.stringify(this.items));

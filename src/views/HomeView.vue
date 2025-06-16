@@ -2,7 +2,7 @@
     <div>
 
         <Banner />
-        
+
         <section class="py-12 mb-4">
             <div class="text-center mb-6">
                 <h2 class="text-3xl font-bold text-gray-800 mb-2">Produtos em Destaque</h2>
@@ -12,20 +12,37 @@
                 @mouseleave="pause = false">
                 <div ref="scrollContent" class="flex space-x-4 transition-all duration-500 ease-in-out"
                     :style="{ transform: `translateX(-${offset}px)` }">
-                    <div v-for="(produto, index) in produtos" :key="index"
+                    <div v-for="produto in produtos" :key="produto.id"
                         class="min-w-[250px] max-w-[250px] bg-white rounded-lg shadow hover:shadow-lg transition relative">
+                        <img :src="produto.image" class="w-full h-48 object-cover rounded-t-lg" />
+                        <div class="absolute top-2 right-2">
+                            <button @click="toggleWishlist(produto)"
+                                :class="['bg-white rounded-full p-2 shadow hover:bg-pink-100 transition', wishlist.isInWishlist(produto.id) ? 'text-red-500' : 'text-pink-600']"
+                                class="bg-white rounded-full p-2 shadow hover:bg-pink-100 transition">
+                                <i :class="['fa-heart', wishlist.isInWishlist(produto.id) ? 'fas text-red-500' : 'far text-pink-600']"
+                                    class="text-lg"></i>
+                            </button>
+                        </div>
                         <router-link :to="`/produto/${produto.slug}`" class="text-pink-600 hover:underline">
-                            <img :src="produto.img" class="w-full h-48 object-cover rounded-t-lg" />
-                            <div class="absolute top-2 right-2">
-                                <button @click="toggleWishlist(index)"
-                                    class="bg-white rounded-full p-2 shadow hover:bg-pink-100 transition">
-                                    <i :class="['fa-heart', wishlist.isInWishlist(produto) ? 'fas text-red-500' : 'far text-pink-600']"
-                                        class="text-lg"></i>
-                                </button>
-                            </div>
                             <div class="p-4">
-                                <h3 class="font-semibold text-lg text-gray-800 mb-1">{{ produto.nome }}</h3>
-                                <p class="text-pink-600 font-bold">R$ {{ produto.preco.toFixed(2) }}</p>
+                                <h3 class="font-semibold text-lg text-gray-800 mb-1">{{ produto.title }}</h3>
+                                <div v-if="produto.price_regular && produto.price_sale < produto.price_regular"
+                                    class="space-x-2">
+                                    <span class="text-gray-400 line-through text-sm">
+                                        R$ {{ produto.price_regular }}
+                                    </span>
+                                    <span class="text-pink-600 font-bold text-lg">
+                                        R$ {{ produto.price_sale }}
+                                    </span>
+                                    <span class="bg-pink-100 text-pink-600 text-xs font-bold px-2 py-1 rounded-full">
+                                        -{{ desconto(produto) }}%
+                                    </span>
+                                </div>
+                                <div v-else>
+                                    <span class="text-pink-600 font-bold text-lg">
+                                        R$ {{ produto.price_sale }}
+                                    </span>
+                                </div>
                             </div>
                         </router-link>
                     </div>
@@ -49,7 +66,7 @@
             </div>
         </section>
         <!-- end feature list -->
-        
+
         <!-- parallax -->
         <section class="relative bg-cover bg-center bg-fixed text-white py-28"
             :style="{ backgroundImage: `url(${imageUrl})` }">
@@ -65,8 +82,8 @@
             </div>
         </section>
         <!-- end parallax-->
-        
-        <ProductGrid :produtos="produtos" :porPagina="16" />
+
+        <!-- <ProductGrid :produtos="produtos" :porPagina="16" /> -->
 
         <section class="bg-gray-50 py-16">
             <div class="max-w-4xl mx-auto px-4">
@@ -87,7 +104,7 @@
                 </div>
             </div>
         </section>
-        
+
     </div>
 </template>
 
@@ -96,7 +113,10 @@ import { ref, onMounted } from 'vue'
 import Banner from '@/components/Banner.vue'
 import Testimonials from '@/components/Testimonials.vue'
 import ProductGrid from '@/components/ProductGrid.vue'
+import { useApi } from '@/composables/useApi'
 import { useWishlistStore } from '@/stores/wishlist'
+
+const { data: produtos, loading, error, get } = useApi('produtos')
 
 defineProps({
     imageUrl: {
@@ -157,51 +177,7 @@ const faqs = ref([
     }
 ])
 
-const produtos = ref([
-    {
-        nome: 'Shampoo Hidratação Profunda',
-        preco: 49.9,
-        img: 'https://source.unsplash.com/300x200/?hair',
-        wishlist: false,
-        slug: 'shampoo-hidratacao-profunda',
-    },
-    {
-        nome: 'Máscara Capilar Nutritiva',
-        preco: 59.9,
-        precoOriginal: 129.9,
-        img: 'https://source.unsplash.com/300x200/?cosmetics',
-        wishlist: false,
-        slug: 'mascara-capilar-nutritiva',
-    },
-    {
-        nome: 'Óleo Reparador de Pontas',
-        preco: 39.9,
-        img: 'https://source.unsplash.com/300x200/?beauty',
-        wishlist: false,
-        slug: 'oleo-reparador-de-pontas',
-    },
-    {
-        nome: 'Kit Manutenção Progressiva',
-        preco: 99.9,
-        img: 'https://source.unsplash.com/300x200/?spa,hair',
-        wishlist: false,
-        slug: 'kit-manutencao-progressiva',
-    },
-    {
-        nome: 'Escova Fashion Gold 500ml',
-        preco: 119.9,
-        img: 'https://source.unsplash.com/300x200/?salon',
-        wishlist: false,
-        slug: 'escova-fashion-gold-500ml',
-    },
-    {
-        nome: 'Leave-in Finalizador',
-        preco: 34.9,
-        img: 'https://source.unsplash.com/300x200/?makeup',
-        wishlist: false,
-        slug: 'leave-in-finalizador',
-    }
-])
+
 const features = ref([
     {
         titulo: 'Elixir da FLORESTA',
@@ -221,11 +197,20 @@ const features = ref([
 ])
 
 function toggleWishlist(index) {
-    wishlist.toggle(produtos.value[index])
+    wishlist.toggle(produtos[index])
+}
+
+function desconto(produto) {
+    const p = produto.price_sale
+    const o = produto.price_regular
+    return Math.round(((o - p) / o) * 100)
 }
 
 onMounted(() => {
-    const totalItems = produtos.value.length
+
+    get({ featured: true })
+
+    const totalItems = produtos.length
     const totalWidth = itemWidth * totalItems
     const maxOffset = totalWidth - itemWidth * visibleItems
 

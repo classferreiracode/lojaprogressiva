@@ -53,10 +53,9 @@
                             :key="index"
                             class="flex items-center mb-4"
                         >
-                            <img :src="item.img" alt="imagem" class="w-12 h-12 rounded object-cover mr-3" />
+                            <img :src="item.image" alt="imagem" class="w-12 h-12 rounded object-cover mr-3" />
                             <div class="flex-1">
-                                <p class="text-sm font-medium text-gray-800">{{ item.nome }}</p>
-                                <p class="text-sm text-pink-600 font-bold">R$ {{ item.preco.toFixed(2) }}</p>
+                                <p class="text-sm font-medium text-gray-800">{{ item.title }}</p>
                             </div>
                             <button @click="wishlist.toggle(item)" class="text-gray-400 hover:text-red-500 ml-2">
                                 <i class="fas fa-trash"></i>
