@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { useApi } from '@/composables/useApi'
 import { onMounted } from 'vue'
 import { useWishlistStore } from '@/stores/wishlist'
+import Banner from '@/components/Banner.vue'
 
 const wishlist = useWishlistStore()
 
@@ -16,6 +17,7 @@ onMounted(() => {
 </script>
 
 <template>
+  <Banner />
   <section class="py-12" v-if="produto">
     <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row gap-8">
       <img :src="produto.image" class="w-full md:w-1/2 rounded shadow-lg object-cover" />
@@ -27,7 +29,7 @@ onMounted(() => {
             <span class="text-pink-600 font-bold text-3xl ml-2">R$ {{ produto.price_sale }}</span>
           </div>
           <div v-else>
-            <span class="text-pink-600 font-bold text-lg">R$ {{ produto.price_regular }}</span>
+            <span class="text-pink-600 font-bold text-3xl">R$ {{ produto.price_regular }}</span>
           </div>
         </div>
         <div class="flex items-center justify-between mb-4">
