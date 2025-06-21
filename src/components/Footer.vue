@@ -45,7 +45,7 @@
                     <h4 class="font-bold text-lg mb-4 text-black">Ajuda</h4>
                     <ul class="space-y-2">
                         <li>
-                            <a href="#" class="text-gray-700 hover:text-pink-400 transition">FAQ</a>
+                            <a href="#faq" class="text-gray-700 hover:text-pink-400 transition">FAQ</a>
                         </li>
                         <li>
                             <a href="https://www.b2cstore.com.br/politica-de-troca-e-devolucao?parceiro=50928" target="_blank"
