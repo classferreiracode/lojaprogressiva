@@ -13,7 +13,7 @@
                         </p>
                     </div>
                     <div class="md:w-1/2 w-full">
-                        <form class="flex flex-col sm:flex-row gap-2">
+                        <form class="flex flex-col sm:flex-row gap-2" id="newsletterForm">
                             <input type="email" placeholder="Seu melhor e-mail"
                                 class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" />
                             <button type="submit"
@@ -40,20 +40,6 @@
                         vendidos direto da Fabrica. Vendas sujeitas a análise e
                         disponibilidade de estoque.
                     </p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="text-gray-600 hover:text-pink-400 transition">
-                            <i class="fab fa-facebook-f"></i>
-                        </a>
-                        <a href="#" class="text-gray-600 hover:text-pink-400 transition">
-                            <i class="fab fa-instagram"></i>
-                        </a>
-                        <a href="#" class="text-gray-600 hover:text-pink-400 transition">
-                            <i class="fab fa-tiktok"></i>
-                        </a>
-                        <a href="#" class="text-gray-600 hover:text-pink-400 transition">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                    </div>
                 </div>
                 <div>
                     <h4 class="font-bold text-lg mb-4 text-black">Ajuda</h4>
@@ -70,7 +56,7 @@
                                class="text-gray-700 hover:text-pink-400 transition">Rastrear Pedido</a>
                         </li>
                         <li>
-                            <a href="#" class="text-gray-700 hover:text-pink-400 transition">Grupo Vip</a>
+                            <a href="https://chat.whatsapp.com/Fvp41d8vrTaBw81BxGAWk1" target="_blank" class="text-gray-700 hover:text-pink-400 transition">Grupo Vip</a>
                         </li>
                     </ul>
                 </div>
@@ -79,8 +65,10 @@
                     <h4 class="text-black font-bold text-lg mb-4">Contato</h4>
                     <ul class="space-y-2">
                         <li class="flex items-center">
-                            <i class="fas fa-phone-alt mr-2 text-pink-400"></i>
-                            <span class="text-gray-800">(11) 4002-8922</span>
+                            <a href="https://wa.me/5515992455005" target="_blank">
+                                <i class="fas fa-phone-alt mr-2 text-pink-400"></i>
+                                <span class="text-gray-800">(15) 99245-5005</span>
+                            </a>
                         </li>
                         <li class="flex items-center">
                             <i class="fas fa-envelope mr-2 text-pink-400"></i>

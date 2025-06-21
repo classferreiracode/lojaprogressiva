@@ -17,9 +17,9 @@
                         <img :src="produto.image" class="w-full h-48 object-cover rounded-t-lg" />
                         <div class="absolute top-2 right-2">
                             <button @click="toggleWishlist(produto)"
-                                :class="['bg-white rounded-full p-2 shadow hover:bg-pink-100 transition', wishlist.isInWishlist(produto.id) ? 'text-red-500' : 'text-pink-600']"
+                                :class="['bg-white rounded-full p-2 shadow hover:bg-pink-100 transition', wishlist.isInWishlist(produto) ? 'text-red-500' : 'text-pink-600']"
                                 class="bg-white rounded-full p-2 shadow hover:bg-pink-100 transition">
-                                <i :class="['fa-heart', wishlist.isInWishlist(produto.id) ? 'fas text-red-500' : 'far text-pink-600']"
+                                <i :class="['fa-heart', wishlist.isInWishlist(produto) ? 'fas text-red-500' : 'far text-pink-600']"
                                     class="text-lg"></i>
                             </button>
                         </div>
@@ -68,7 +68,7 @@
         <!-- end feature list -->
 
         <!-- parallax -->
-        <section class="relative bg-cover bg-center bg-fixed text-white py-28"
+        <!-- <section class="relative bg-cover bg-center bg-fixed text-white py-28"
             :style="{ backgroundImage: `url(${imageUrl})` }">
             <div class="bg-black/40 absolute inset-0"></div>
 
@@ -80,12 +80,12 @@
                     {{ cta }}
                 </a>
             </div>
-        </section>
+        </section> -->
         <!-- end parallax-->
 
         <!-- <ProductGrid :produtos="produtos" :porPagina="16" /> -->
 
-        <section class="bg-gray-50 py-16">
+        <section class="bg-gray-50 py-16" id="faq">
             <div class="max-w-4xl mx-auto px-4">
                 <h2 class="text-3xl font-bold text-center text-gray-800 mb-10">Perguntas Frequentes</h2>
                 <div v-for="(faq, index) in faqs" :key="index"
@@ -176,7 +176,6 @@ const faqs = ref([
         resposta: 'Sim! Nossa fórmula é compatível com outras químicas como coloração, descoloração e alisamentos.'
     }
 ])
-
 
 const features = ref([
     {
