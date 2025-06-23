@@ -184,12 +184,12 @@ const features = ref([
         img: 'https://lojafashionoficial.com/wp-content/uploads/2025/03/337487-1.webp',
     },
     {
-        titulo: 'Elixir da PANTANAL',
+        titulo: 'Elixir do PANTANAL',
         desc: 'O Shampoo Elixir do Pantanal foi desenvolvido para revitalizar cabelos secos e ressecados, unindo o poder do breu branco, da manteiga de murumuru e do óleo de babaçu. Com ativos naturais em sua forma mais pura e eficaz, ele nutre e protege os fios sem pesar. Sua limpeza suave respeita a estrutura capilar, restaurando maciez e brilho, enquanto mantém o couro cabeludo equilibrado e saudável, graças às propriedades nutritivas e emolientes dos ingredientes exclusivos do Pantanal. Com essência desenvolvida especialmente na região do Pantanal, esse shampoo traz um toque autêntico, conectando você à rica biodiversidade local e ao poder transformador da natureza.',
         img: 'https://lojafashionoficial.com/wp-content/uploads/2025/03/337486-1.webp',
     },
     {
-        titulo: 'Elixir da CERRADO',
+        titulo: 'Elixir do CERRADO',
         desc: 'O Shampoo Elixir do Pantanal foi desenvolvido para revitalizar cabelos secos e ressecados, unindo o poder do breu branco, da manteiga de murumuru e do óleo de babaçu. Com ativos naturais em sua forma mais pura e eficaz, ele nutre e protege os fios sem pesar. Sua limpeza suave respeita a estrutura capilar, restaurando maciez e brilho, enquanto mantém o couro cabeludo equilibrado e saudável, graças às propriedades nutritivas e emolientes dos ingredientes exclusivos do Pantanal. Com essência desenvolvida especialmente na região do Pantanal, esse shampoo traz um toque autêntico, conectando você à rica biodiversidade local e ao poder transformador da natureza.',
         img: 'https://lojafashionoficial.com/wp-content/uploads/2025/03/337485-1.webp',
     },

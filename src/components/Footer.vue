@@ -1,31 +1,4 @@
 <template>
-    <!-- Newsletter -->
-    <section class="py-12 bg-gray-50">
-        <div class="container mx-auto px-4 max-w-4xl">
-            <div class="bg-white rounded-xl shadow-sm p-6 md:p-8">
-                <div class="flex flex-col md:flex-row items-center">
-                    <div class="md:w-1/2 mb-6 md:mb-0">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-2">
-                            Cadastre-se na nossa Newsletter
-                        </h2>
-                        <p class="text-gray-600">
-                            Receba ofertas exclusivas e novidades em primeira mão!
-                        </p>
-                    </div>
-                    <div class="md:w-1/2 w-full">
-                        <form class="flex flex-col sm:flex-row gap-2" id="newsletterForm">
-                            <input type="email" placeholder="Seu melhor e-mail"
-                                class="flex-grow px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-pink-500" />
-                            <button type="submit"
-                                class="bg-pink-600 hover:bg-pink-700 text-white font-medium py-3 px-6 rounded-lg transition duration-300">
-                                Cadastrar
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Footer -->
     <footer class="bg-[#FDEFE1] text-white pt-12 pb-6">
