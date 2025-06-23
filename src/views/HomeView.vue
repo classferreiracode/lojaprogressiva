@@ -12,14 +12,14 @@
                 @mouseleave="pause = false">
                 <div ref="scrollContent" class="flex space-x-4 transition-all duration-500 ease-in-out"
                     :style="{ transform: `translateX(-${offset}px)` }">
-                    <div v-for="produto in produtos" :key="produto.id"
+                    <div v-for="(produto, index) in produtos" :key="produto.id"
                         class="min-w-[250px] max-w-[250px] bg-white rounded-lg shadow hover:shadow-lg transition relative">
                         <img :src="produto.image" class="w-full h-48 object-cover rounded-t-lg" />
                         <div class="absolute top-2 right-2">
-                            <button @click="toggleWishlist(produto)"
-                                :class="['bg-white rounded-full p-2 shadow hover:bg-pink-100 transition', wishlist.isInWishlist(produto) ? 'text-red-500' : 'text-pink-600']"
+                            <button @click="toggleWishlist(index)"
+                                :class="['bg-white rounded-full p-2 shadow hover:bg-pink-100 transition', wishlist.isInWishlist(index) ? 'text-red-500' : 'text-pink-600']"
                                 class="bg-white rounded-full p-2 shadow hover:bg-pink-100 transition">
-                                <i :class="['fa-heart', wishlist.isInWishlist(produto) ? 'fas text-red-500' : 'far text-pink-600']"
+                                <i :class="['fa-heart', wishlist.isInWishlist(index) ? 'fas text-red-500' : 'far text-pink-600']"
                                     class="text-lg"></i>
                             </button>
                         </div>
@@ -192,6 +192,16 @@ const features = ref([
         titulo: 'Elixir da CERRADO',
         desc: 'O Shampoo Elixir do Pantanal foi desenvolvido para revitalizar cabelos secos e ressecados, unindo o poder do breu branco, da manteiga de murumuru e do óleo de babaçu. Com ativos naturais em sua forma mais pura e eficaz, ele nutre e protege os fios sem pesar. Sua limpeza suave respeita a estrutura capilar, restaurando maciez e brilho, enquanto mantém o couro cabeludo equilibrado e saudável, graças às propriedades nutritivas e emolientes dos ingredientes exclusivos do Pantanal. Com essência desenvolvida especialmente na região do Pantanal, esse shampoo traz um toque autêntico, conectando você à rica biodiversidade local e ao poder transformador da natureza.',
         img: 'https://lojafashionoficial.com/wp-content/uploads/2025/03/337485-1.webp',
+    },
+    {
+        titulo: 'Escova Progressiva Fashion Gold',
+        desc: 'Você encontrou a solução para alisar os seus cabelos de forma segura, sem precisar se preocupar com o mau odor ou se irá danificar o seu cabelo. A Escova Progressiva Fashion Gold proporciona cabelos totalmente alinhados, com brilho espelhado e sem frizz. É a solução perfeita para você que quer estar com os cabelos bonitos e alinhados a qualquer hora do dia. A Fashion Gold foi a primeira progressiva que entregou resultados de salão em casa de forma acessível, prática e sem danificar os seus fios, com resultado garantido por até 90 dias. Você não precisa se preocupar com o medo de afinar os fios, com cheiro forte, ardência ou casquinhas no couro cabeludo ao usar nossa Escova Progressiva. A fórmula exclusiva da Fashion Gold foi desenvolvida para alisar os seus cabelos desde a primeira aplicação, mantendo-os resistentes e saudáveis, com o ativo exclusivo Kerafive22® e ingredientes de alta  qualidade, como a proteína de quinoa, o óleo Inca e o óleo de coco, que nutrem profundamente seus fios, reduzindo a quebra e o frizz, deixando seus cabelos brilhantes e macios. Tenha cabelos lisos, saudáveis e deslumbrantes com a Progressiva Fashion Gold.',
+        img: 'https://lojaybera.fbitsstatic.net/img/p/escova-progressiva-500g-fashion-gold-150264/336774-10.jpg',
+    },
+    {
+        titulo: 'Kit Cronograma Capilar Fashion Gold',
+        desc: 'Esses produtos separados são excepcionais, mas, juntos, vão deixar os seus cabelos saudáveis, com brilho e movimento irão te surpreender. Com o Kit Cronograma Capilar + Shampoo Multifunção, seus cabelos ficarão macios, saudáveis, brilhantes e perfumados, devolvendo a autoestima que os cabelos bonitos e bem cuidados podem proporcionar para uma mulher. Resultado que você nota desde a primeira aplicação. O inovador Shampoo Multifunção não resseca os seus cabelos, além de fortalecer os fios e reduzir a quebra. Sua poderosa ação otimiza os benefícios das máscaras capilares do Cronograma Capilar, potencializando os seus resultados a cada uso. A formulação exclusiva do Cronograma trata todas as camadas do fio, com rápida ação - em apenas 3 segundos. Oferecendo um tratamento intensivo para todas as camadas do fio (medula, córtex e cutícula), proporciona reconstrução, nutrição e hidratação profunda dos fios danificados. Com a Fashion Gold, em apenas um combo, você já encontra o seu Cronograma Capilar completo, com tudo o que seu cabelo precisa.',
+        img: 'https://lojaybera.fbitsstatic.net/img/p/kit-cronograma-capilar-com-shampoo-500ml-fashion-gold-150454/336969-1.jpg',
     }
 ])
 
