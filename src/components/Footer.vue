@@ -32,9 +32,10 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
                 <div>
-                    <h3 class="text-xl font-bold mb-4 text-black">
+                    <img src="/logo-progressiva.png" alt="Logo Progressiva Fashion" class="h-20 mb-4">
+                    <!-- <h3 class="text-xl font-bold mb-4 text-black">
                         Progressiva Fashion
-                    </h3>
+                    </h3> -->
                     <p class="text-gray-700 mb-4">
                         Somos afiliados da B2Club e todos os produtos são entregues e
                         vendidos direto da Fabrica. Vendas sujeitas a análise e

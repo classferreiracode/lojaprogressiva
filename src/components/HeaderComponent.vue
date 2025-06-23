@@ -2,7 +2,9 @@
     <header class="bg-white shadow-sm sticky top-0 z-50">
         <nav class="container mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between">
             <div class="flex justify-between items-center w-full md:w-auto mb-4 md:mb-0">
-                <RouterLink to="/" class="text-2xl font-bold text-pink-600">Progressiva<span class="text-gray-800">Fashion</span>
+                <RouterLink to="/" class="text-2xl font-bold text-pink-600">
+                    <img src="/logo-progressiva.png" alt="Logo" class="h-18 inline-block mr-2">
+                    <!-- Progressiva<span class="text-gray-800">Fashion</span> -->
                 </RouterLink>
 
                 <button class="md:hidden text-gray-700" @click="menuAberto = !menuAberto">
