@@ -12,7 +12,7 @@
                 @mouseleave="pause = false">
                 <div ref="scrollContent" class="flex space-x-4 transition-all duration-500 ease-in-out"
                     :style="{ transform: `translateX(-${offset}px)` }">
-                    <div v-for="(produto, index) in produtos" :key="produto.id"
+                    <div v-for="(produto, index) in produtos" :key="index"
                         class="min-w-[250px] max-w-[250px] bg-white rounded-lg shadow hover:shadow-lg transition relative">
                         <img :src="produto.image" class="w-full h-48 object-cover rounded-t-lg" />
                         <div class="absolute top-2 right-2">
