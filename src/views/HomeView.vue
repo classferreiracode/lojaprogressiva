@@ -190,7 +190,7 @@ const features = ref([
     },
     {
         titulo: 'Elixir do CERRADO',
-        desc: 'O Shampoo Elixir do Pantanal foi desenvolvido para revitalizar cabelos secos e ressecados, unindo o poder do breu branco, da manteiga de murumuru e do óleo de babaçu. Com ativos naturais em sua forma mais pura e eficaz, ele nutre e protege os fios sem pesar. Sua limpeza suave respeita a estrutura capilar, restaurando maciez e brilho, enquanto mantém o couro cabeludo equilibrado e saudável, graças às propriedades nutritivas e emolientes dos ingredientes exclusivos do Pantanal. Com essência desenvolvida especialmente na região do Pantanal, esse shampoo traz um toque autêntico, conectando você à rica biodiversidade local e ao poder transformador da natureza.',
+        desc: 'O Shampoo e Condicionador Elixir do Cerrado trabalham juntos para restaurar a leveza e o brilho natural dos fios. O shampoo limpa sem ressecar, regulando a oleosidade das raízes, enquanto o condicionador nutre as pontas sem pesar. A combinação perfeita para manter seu cabelo saudável, solto e macio. Além do brilho, fim das pontas duplas e da essência exclusiva do Cerrado, que te transporta para a região, revitalizando e cuidando dos seus fios, como eles merecem. Com o uso contínuo, você percebe que a oleosidade excessiva não volta tão rápido, as pontas ficam protegidas e os fios ganham um movimento natural que antes parecia impossível. Chega de lavar os cabelos todos os dias sem ver melhora. Experimente o Elixir do Cerrado e descubra o equilíbrio que seu cabelo merece.',
         img: 'https://lojafashionoficial.com/wp-content/uploads/2025/03/337485-1.webp',
     },
     {
