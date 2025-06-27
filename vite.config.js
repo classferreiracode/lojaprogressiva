@@ -10,4 +10,14 @@ export default defineConfig({
       "@": path.resolve(__dirname, "src"),
     },
   },
+  server: {
+    proxy: {
+      "/api": {
+        target: "https://api.lojaprogressivafashion.com.br",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, "/public/api"),
+        secure: false,
+      },
+    },
+  },
 });

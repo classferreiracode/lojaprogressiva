@@ -84,7 +84,12 @@
 import { ref } from 'vue'
 import Banner from "@/components/Banner.vue"
 import Spinner from '@/components/Spinner.vue'
-import { useApi } from '@/composables/useApi'
+
+// URL base da API (corrigida para 'public' em vez de 'publik')
+const baseApiUrl = 'https://api.lojaprogressivafashion.com.br/public/api'
+
+// Durante desenvolvimento usa proxy, em produção usa URL direta
+const apiUrl = import.meta.env.DEV ? '/api' : baseApiUrl
 
 const form = ref({
   nome: '',
@@ -104,21 +109,46 @@ const submitForm = async () => {
   success.value = false
   
   try {
-    // Substitua pela sua API real
-    const response = await fetch('https://api.lojaprogressivafashion.com.br/public/api/contato', {
+    const response = await fetch(`${apiUrl}/contato`, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
       },
       body: JSON.stringify(form.value)
     })
     
-    if (!response.ok) throw new Error('Erro ao enviar mensagem')
+    // Verifica o status da resposta antes de tentar parsear JSON
+    if (!response.ok) {
+      // Tenta obter mensagem de erro se for JSON
+      if (response.headers.get('content-type')?.includes('application/json')) {
+        const errorData = await response.json()
+        throw new Error(errorData.message || `Erro ${response.status}: ${response.statusText}`)
+      } else {
+        const text = await response.text()
+        throw new Error(`Erro ${response.status}: ${text}`)
+      }
+    }
     
-    success.value = true
-    form.value = { nome: '', email: '', telefone: '', assunto: '', mensagem: '' }
+    const data = await response.json()
+    
+    if (data.success) {
+      success.value = true
+      form.value = { nome: '', email: '', telefone: '', assunto: '', mensagem: '' }
+    } else {
+      throw new Error(data.message || 'Erro ao enviar formulário')
+    }
   } catch (err) {
-    error.value = err.message || 'Erro ao enviar formulário'
+    console.error('Erro completo:', err)
+    
+    // Mensagens amigáveis para erros comuns
+    if (err.message.includes('Failed to fetch')) {
+      error.value = 'Erro de conexão com o servidor. Verifique sua internet.'
+    } else if (err.message.includes('CORS')) {
+      error.value = 'Erro de configuração do servidor. Tente novamente mais tarde.'
+    } else {
+      error.value = err.message || 'Erro ao enviar formulário'
+    }
   } finally {
     loading.value = false
   }
