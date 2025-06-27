@@ -43,8 +43,7 @@
                 <button @click="pagina--" :disabled="pagina === 1" class="px-4 py-2 border rounded disabled:opacity-30">
                     Anterior
                 </button>
-                <button @click="pagina++" :disabled="pagina >= totalPaginas"
-                    class="px-4 py-2 border rounded disabled:opacity-30">
+                <button @click="pagina++" :disabled="pagina >= totalPaginas" class="px-4 py-2 border rounded disabled:opacity-30">
                     Próximo
                 </button>
             </div>

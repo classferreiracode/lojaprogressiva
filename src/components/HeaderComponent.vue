@@ -4,7 +4,6 @@
             <div class="flex justify-between items-center w-full md:w-auto mb-4 md:mb-0">
                 <RouterLink to="/" class="text-2xl font-bold text-pink-600">
                     <img src="/logo-progressiva.png" alt="Logo" class="h-18 inline-block mr-2">
-                    <!-- Progressiva<span class="text-gray-800">Fashion</span> -->
                 </RouterLink>
 
                 <button class="md:hidden text-gray-700" @click="menuAberto = !menuAberto">
@@ -12,20 +11,16 @@
                 </button>
             </div>
 
-            <!-- Menu Mobile (abaixo do search bar ou onde desejar) -->
             <div v-if="menuAberto" class="md:hidden flex flex-col bg-gray-50 items-center gap-2 mb-4 p-2 rounded-b-lg">            
                 <RouterLink to="/" class="text-gray-700 hover:text-pink-500" @click="menuAberto = false">Início</RouterLink>
                 <RouterLink to="/loja" class="text-gray-700 hover:text-pink-500" @click="menuAberto = false">Loja</RouterLink>
                 <RouterLink to="/contato" class="text-gray-700 hover:text-pink-500" @click="menuAberto = false">Contato</RouterLink>
             </div>
 
-            <!-- Search bar -->
             <SearchComponent />
 
-            <!-- Icons -->
             <div class="relative" ref="dropdownRef">
                 <div class="flex items-center space-x-4">
-                    <!-- Ícone com contador -->
                     <button @click="showDropdown = !showDropdown" class="text-gray-700 hover:text-pink-500 relative">
                         <i class="fas fa-heart text-xl"></i>
                         <span v-if="wishlist.items.length" class="absolute -top-2 -right-2 bg-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -33,7 +28,6 @@
                         </span>
                     </button>
                 </div>
-                <!-- Dropdown -->
                 <div
                     v-if="showDropdown"
                     class="absolute right-0 mt-2 w-72 bg-white border border-gray-200 rounded shadow-lg z-50"
@@ -61,8 +55,6 @@
             </div>
         </nav>
 
-        
-
         <div class="hidden md:block border-t border-gray-100 py-2">
             <ul class="flex space-x-8 justify-center">
                 <li>
@@ -80,35 +72,27 @@
 </template>
 
 <script setup>
-import {ref, onMounted, onBeforeUnmount} from 'vue'
-import {RouterLink} from 'vue-router'
-import {useWishlistStore} from '@/stores/wishlist'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { RouterLink } from 'vue-router'
+import { useWishlistStore } from '@/stores/wishlist'
 import SearchComponent from './SearchComponent.vue'
 
 const wishlist = useWishlistStore()
 const showDropdown = ref(false)
 const menuAberto = ref(false)
-
-const wishlistCount = ref(0)
-
-const loadWishlistCount = () => {
-    const wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]')
-    wishlistCount.value = wishlist.length
-}
-
-function toggleDropdown() {
-    showDropdown.value = !showDropdown.value
-}
-
-function useClickOutside(targetRef, callback) {
-    const listener = (event) => {
-        if (!targetRef.value || targetRef.value.contains(event.target)) return
-        callback()
-    }
-    onMounted(() => document.addEventListener('mousedown', listener))
-    onBeforeUnmount(() => document.removeEventListener('mousedown', listener))
-}
 const dropdownRef = ref(null)
-useClickOutside(dropdownRef, () => { showDropdown.value = false })
 
+const clickOutsideHandler = (event) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+    showDropdown.value = false
+  }
+}
+
+onMounted(() => {
+  document.addEventListener('click', clickOutsideHandler)
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', clickOutsideHandler)
+})
 </script>

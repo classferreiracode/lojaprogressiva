@@ -14,11 +14,10 @@
         </button>
         <div v-if="search" class="absolute left-0 right-0 bg-white shadow-lg rounded-lg mt-2 p-4">
             <p class="text-gray-600">Resultados para "{{ search }}"</p>
-            <!-- Aqui você pode adicionar lógica para exibir resultados de busca -->
             <ul class="mt-2">
                 <li v-for="result in results" :key="result.id" class="py-1 hover:bg-gray-100 rounded cursor-pointer">
-                    <a :href="`/produto/${result.slug}`" class="text-pink-600 hover:underline">
-                        <img v-if="result.image" :src="result.image" alt="Imagem do produto" class="w-12 h-12 object-cover mr-2 inline-block">
+                    <a :href="`/produto/${result.slug}`" class="text-pink-600 hover:underline flex items-center">
+                        <img v-if="result.image" :src="result.image" alt="Imagem do produto" class="w-12 h-12 object-cover mr-2">
                         <span class="font-medium">{{ result.title }}</span>
                     </a>
                 </li>
@@ -29,10 +28,10 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-const search = ref('')
 import { useRouter } from 'vue-router'
+const search = ref('')
 const router = useRouter()
-const results = ref('')
+const results = ref([])
 
 const debounce = (func, delay) => {
     let timeout
@@ -46,8 +45,8 @@ const debouncedSearch = debounce(() => {
 }, 300)
 
 const searchProducts = () => {
-    // Lógica de busca no endpoint https://api.lojaprogressivafashion.com.br/public/api/search
     if (search.value.trim() === '') {
+        results.value = []
         return
     }
 
@@ -64,12 +63,11 @@ const searchProducts = () => {
         })
         .catch(error => {
             console.error('Erro ao buscar produtos:', error)
+            results.value = []
         })
-
-    //search.value = '' // Limpa o campo de busca após a pesquisa
 }
+
 onMounted(() => {
-    // Adiciona o listener de evento para a busca
     search.value = ''
 })
 </script>

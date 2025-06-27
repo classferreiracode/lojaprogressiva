@@ -1,25 +1,25 @@
-// src/stores/wishlist.js
 import { defineStore } from "pinia";
+import { ref, watch } from "vue";
 
-export const useWishlistStore = defineStore("wishlist", {
-  state: () => ({
-    items: JSON.parse(localStorage.getItem("wishlist")) || [],
-  }),
-  actions: {
-    toggle(item) {
-      const index = this.items.findIndex((p) => p.title === item.title);
-      if (index >= 0) {
-        this.items.splice(index, 1);
-      } else {
-        this.items.push(item);
-      }
-      this.save();
-    },
-    isInWishlist(item) {
-      return this.items.some((p) => p.title === item.title);
-    },
-    save() {
-      localStorage.setItem("wishlist", JSON.stringify(this.items));
-    },
-  },
+export const useWishlistStore = defineStore("wishlist", () => {
+  const items = ref(JSON.parse(localStorage.getItem("wishlist") || "[]"));
+  
+  const toggle = (product) => {
+    const index = items.value.findIndex(p => p.id === product.id);
+    if (index >= 0) {
+      items.value.splice(index, 1);
+    } else {
+      items.value.push(product);
+    }
+  };
+  
+  const isInWishlist = (product) => {
+    return items.value.some(p => p.id === product.id);
+  };
+  
+  watch(items, (newItems) => {
+    localStorage.setItem("wishlist", JSON.stringify(newItems));
+  }, { deep: true });
+  
+  return { items, toggle, isInWishlist };
 });

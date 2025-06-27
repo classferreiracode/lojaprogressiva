@@ -1,10 +1,9 @@
-
 <template>
   <div class="relative overflow-hidden hero-gradient">
     <div class="slideshow-container">
       <div class="mySlides fade" v-for="(slide, index) in slides" :key="index" v-show="index === activeSlide">
           <a :href="slide.link">
-            <img :src="slide.img" class="rounded-lg shadow-xl w-full" :alt="slide.text" />
+            <img :src="slide.img" class="rounded-lg shadow-xl w-full" :alt="slide.text" loading="lazy" />
           </a>
       </div>
     </div>
