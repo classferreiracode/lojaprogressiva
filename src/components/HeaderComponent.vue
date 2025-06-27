@@ -20,18 +20,7 @@
             </div>
 
             <!-- Search bar -->
-            <div class="relative w-full md:w-1/2 mb-4 md:mb-0">
-                <input
-                    v-model="search"
-                    type="text"
-                    placeholder="Buscar produtos..."
-                    class="w-full py-2 px-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-500"
-                >
-                <button
-                    class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-pink-500 text-white px-4 py-2.5 rounded-r-full hover:bg-pink-600 transition">
-                    <i class="fas fa-search"></i>
-                </button>
-            </div>
+            <SearchComponent />
 
             <!-- Icons -->
             <div class="relative" ref="dropdownRef">
@@ -94,11 +83,11 @@
 import {ref, onMounted, onBeforeUnmount} from 'vue'
 import {RouterLink} from 'vue-router'
 import {useWishlistStore} from '@/stores/wishlist'
+import SearchComponent from './SearchComponent.vue'
 
 const wishlist = useWishlistStore()
 const showDropdown = ref(false)
 const menuAberto = ref(false)
-const search = ref('')
 
 const wishlistCount = ref(0)
 
