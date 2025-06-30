@@ -61,7 +61,12 @@
                 <div class="flex space-x-4">
                     <p class="text-gray-900 text-sm mb-4 md:mb-0">
                         by
-                        <span class="font-bold text-[#E60976]">classFerreiraCode 🙏</span>
+                        <span class="font-bold text-[#E60976]">
+                            <a href="https://github.com/classFerreiraCode" target="_blank" class="hover:text-pink-400 transition">
+                                @classFerreiraCode
+                            </a>
+                             🙏
+                        </span>
                     </p>
                 </div>
             </div>
