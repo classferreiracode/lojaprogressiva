@@ -1,36 +1,54 @@
 <template>
   <div class="relative overflow-hidden hero-gradient">
     <div class="slideshow-container">
-      <div class="mySlides fade" v-for="(slide, index) in slides" :key="index" v-show="index === activeSlide">
-          <a :href="slide.link">
-            <img :src="slide.img" class="rounded-lg shadow-xl w-full" :alt="slide.text" loading="lazy" />
-          </a>
+      <div
+        v-for="(slide, index) in slides"
+        :key="index"
+        class="mySlides fade"
+        v-show="index === activeSlide"
+      >
+        <a :href="slide.link">
+          <img :src="slide.img" class="rounded-lg shadow-xl w-full" :alt="slide.text" loading="lazy" />
+        </a>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import homeContent from '@/data/homeContent.json'
 
-const slides = ref([
-  {
-      text: 'Conheça a linha completa da Progressiva Fashion!',
-      link: '#',
-      img: 'https://lojaybera.fbitsstatic.net/img/b/265fb37b-0eb5-463f-ac40-51fe85298b59.jpg'
+const props = defineProps({
+  slides: {
+    type: Array,
+    default: () => []
   },
-  {
-      text: 'Cuide do seu cabelo com qualidade de salão.',
-      link: '#',
-      img: 'https://lojaybera.fbitsstatic.net/img/b/590f24f3-69eb-4829-b79c-9e17f50f7558.jpg'
+  intervalMs: {
+    type: Number,
+    default: 6000
   }
-])
+})
+
+const fallbackSlides = homeContent.bannerSlides || []
+const slides = computed(() => (props.slides.length ? props.slides : fallbackSlides))
 
 const activeSlide = ref(0)
-onMounted(() => {
-  setInterval(() => {
+let intervalId = null
+
+const startRotation = () => {
+  if (slides.value.length <= 1) return
+  intervalId = setInterval(() => {
     activeSlide.value = (activeSlide.value + 1) % slides.value.length
-  }, 6000)
+  }, props.intervalMs)
+}
+
+onMounted(() => {
+  startRotation()
+})
+
+onBeforeUnmount(() => {
+  clearInterval(intervalId)
 })
 </script>
 

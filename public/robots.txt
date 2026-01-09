@@ -1,0 +1,9 @@
+User-agent: Googlebot
+Disallow: /nogooglebot/
+
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+
+Sitemap: https://www.lojaprogressivafashion.com.br/sitemap.xml

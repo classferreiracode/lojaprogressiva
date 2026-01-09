@@ -1,9 +1,10 @@
 <script setup>
 import { useRoute } from 'vue-router'
 import { useApi } from '@/composables/useApi'
-import { ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 import { useWishlistStore } from '@/stores/wishlist'
 import { formatarPreco } from '@/utils/helpers'
+import { setMeta, truncateText } from '@/utils/seo'
 import Banner from '@/components/Banner.vue'
 import Spinner from '@/components/Spinner.vue'
 
@@ -12,6 +13,8 @@ const wishlist = useWishlistStore()
 const { data: produto, loading, error, get } = useApi(`produtos/${route.params.slug}`)
 
 const selectedImage = ref('')
+const brandName = 'Loja Progressiva Fashion'
+const baseUrl = 'https://www.lojaprogressivafashion.com.br'
 
 onMounted(() => {
   get().then(() => {
@@ -19,6 +22,16 @@ onMounted(() => {
       selectedImage.value = produto.value.image
     }
   })
+})
+
+watch(produto, (value) => {
+  if (!value) return
+  const title = `${value.title} | ${brandName}`
+  const description = truncateText(value.description || `Conheça ${value.title} na ${brandName}.`)
+  const image = value.image || `${baseUrl}/logo-progressiva.png`
+  const slug = value.slug || route.params.slug
+  const url = `${baseUrl}/produto/${slug}`
+  setMeta({ title, description, image, url })
 })
 
 const isInWishlist = computed(() => {

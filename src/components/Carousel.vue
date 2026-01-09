@@ -10,9 +10,9 @@
             :item="item" />
     </div>
     
-    <div class="flex justify-center mt-4 space-x-2">
-      <button 
-        v-for="(_, i) in totalPages" 
+    <div v-if="totalPages > 1" class="flex justify-center mt-4 space-x-2">
+      <button
+        v-for="(_, i) in totalPages"
         :key="i"
         @click="goToPage(i)"
         :class="[
@@ -62,6 +62,7 @@ const maxOffset = computed(() => {
 })
 
 const startCarousel = () => {
+  if (totalPages.value <= 1) return
   intervalId = setInterval(() => {
     if (!pause.value) {
       nextSlide()
@@ -70,11 +71,13 @@ const startCarousel = () => {
 }
 
 const nextSlide = () => {
+  if (totalPages.value <= 1) return
   currentPage.value = (currentPage.value + 1) % totalPages.value
   offset.value = currentPage.value * props.visibleItems * props.itemWidth
 }
 
 const goToPage = (page) => {
+  if (page < 0 || page >= totalPages.value) return
   currentPage.value = page
   offset.value = page * props.visibleItems * props.itemWidth
 }
