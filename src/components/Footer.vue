@@ -1,101 +1,116 @@
 <template>
+  <footer ref="footerRef" class="section-shell px-4 pb-8 pt-10 md:px-6 md:pt-12">
+    <div
+      class="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[#21161d] text-white shadow-[0_32px_80px_rgba(20,8,14,0.35)]">
+      <div class="grid gap-8 px-6 py-8 md:px-10 lg:grid-cols-[1.1fr_0.7fr_0.75fr_0.95fr] lg:items-start lg:py-10">
+        <div data-animate="footer-block">
+          <span
+            class="inline-flex rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.22em] text-[#f6d5df]">
+            Marca com autoridade
+          </span>
+          <img src="/logo-progressiva.png" alt="Logo Progressiva Fashion"
+            class="mt-5 h-18 w-auto rounded-2xl bg-white/90 p-2">
+          <h3 class="brand-heading mt-5 text-4xl font-semibold">Progressiva Fashion</h3>
+          <p class="mt-3 max-w-md text-sm leading-7 text-white/72">
+            Vitrine comercial para quem busca alisamento, cronograma e tratamento com linguagem de marca forte,
+            compra segura e percepção premium em cada contato.
+          </p>
 
-    <!-- Footer -->
-    <footer class="bg-[#FDEFE1] text-white pt-12 pb-6">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-                <div>
-                    <img src="/logo-progressiva.png" alt="Logo Progressiva Fashion" class="h-20 mb-4">
-                    <!-- <h3 class="text-xl font-bold mb-4 text-black">
-                        Progressiva Fashion
-                    </h3> -->
-                    <p class="text-gray-700 mb-4">
-                        Somos afiliados da B2Club e todos os produtos são entregues e
-                        vendidos direto da Fabrica. Vendas sujeitas a análise e
-                        disponibilidade de estoque.
-                    </p>
-                </div>
-                <div>
-                    <h4 class="font-bold text-lg mb-4 text-black">Ajuda</h4>
-                    <ul class="space-y-2">
-                        <li>
-                            <a href="#faq" class="text-gray-700 hover:text-pink-400 transition">FAQ</a>
-                        </li>
-                        <li>
-                            <a href="https://www.b2cstore.com.br/politica-de-troca-e-devolucao?parceiro=50928" target="_blank"
-                               class="text-gray-700 hover:text-pink-400 transition">Trocas e Devoluções</a>
-                        </li>
-                        <li>
-                            <a href="https://www.b2cstore.com.br/rastreamento?parceiro=50928" target="_blank"
-                               class="text-gray-700 hover:text-pink-400 transition">Rastrear Pedido</a>
-                        </li>
-                        <li>
-                            <a href="https://chat.whatsapp.com/Fvp41d8vrTaBw81BxGAWk1" target="_blank" class="text-gray-700 hover:text-pink-400 transition">Grupo Vip</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-black font-bold text-lg mb-4">Contato</h4>
-                    <ul class="space-y-2">
-                        <li class="flex items-center">
-                            <a href="https://wa.me/5515992455005" target="_blank">
-                                <i class="fas fa-phone-alt mr-2 text-pink-400"></i>
-                                <span class="text-gray-800">(15) 99245-5005</span>
-                            </a>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-2 text-pink-400"></i>
-                            <span class="text-gray-800">contato@lojaprogressivafashion.com.br</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gray-700 pt-6 flex flex-col md:flex-row justify-between items-center">
-                <p class="text-gray-900 text-sm mb-4 md:mb-0">
-                    © 2025
-                    <span class="font-bold text-[#E60976]">Progressiva Fashion</span>.
-                    Todos os direitos reservados.
-                </p>
-                <div class="flex space-x-4">
-                    <p class="text-gray-900 text-sm mb-4 md:mb-0">
-                        by
-                        <span class="font-bold text-[#E60976]">
-                            <a href="https://github.com/classFerreiraCode" target="_blank" class="hover:text-pink-400 transition">
-                                @classFerreiraCode
-                            </a>
-                             🙏
-                        </span>
-                    </p>
-                </div>
-            </div>
         </div>
-    </footer>
 
-    <div class="bg-[#E60976] text-white text-center py-4">
-        <div class="container mx-auto px-4">
-            <p>
-                Todo o conteúdo do site, todas as fotos, imagens, logotipos, marcas,
-                dizeres, som, software, conjunto imagem, layout, trade dress, aqui
-                veiculados são de propriedade exclusiva da GYP ou de suas Marcas. Esta
-                pagina visa auxiliar nossos seguidores estar atentos a promoções e
-                lançamentos da GYP. Somos afiliados da B2Club e todos os produtos são
-                entregues e vendidos direto da Fabrica. Caso os produtos apresentem
-                divergências de valores, o preço válido é o exibido na tela de
-                pagamento. Vendas sujeitas a análise e disponibilidade de estoque.
-            </p>
+        <div data-animate="footer-block">
+          <p class="text-xs font-extrabold uppercase tracking-[0.22em] text-[#f6d5df]">Navegação rápida</p>
+          <ul class="mt-4 space-y-3 text-sm text-white/76">
+            <li><a href="/" class="transition hover:text-white">Home</a></li>
+            <li><a href="/loja" class="transition hover:text-white">Loja</a></li>
+            <li><a href="/wishlist" class="transition hover:text-white">Favoritos</a></li>
+            <li><a href="/contato" class="transition hover:text-white">Contato</a></li>
+          </ul>
         </div>
+
+        <div data-animate="footer-block">
+          <p class="text-xs font-extrabold uppercase tracking-[0.22em] text-[#f6d5df]">Ajuda ao cliente</p>
+          <ul class="mt-4 space-y-3 text-sm text-white/76">
+            <li><a href="/#faq" class="transition hover:text-white">Perguntas frequentes</a></li>
+            <li><a href="https://www.b2cstore.com.br/politica-de-troca-e-devolucao?parceiro=50928" target="_blank"
+                class="transition hover:text-white">Trocas e devoluções</a></li>
+            <li><a href="https://www.b2cstore.com.br/rastreamento?parceiro=50928" target="_blank"
+                class="transition hover:text-white">Rastreamento</a></li>
+            <li><a href="https://chat.whatsapp.com/Fvp41d8vrTaBw81BxGAWk1" target="_blank"
+                class="transition hover:text-white">Grupo VIP</a></li>
+          </ul>
+        </div>
+
+        <div data-animate="footer-block">
+          <p class="text-xs font-extrabold uppercase tracking-[0.22em] text-[#f6d5df]">Contato e confiança</p>
+          <ul class="mt-4 space-y-3 text-sm text-white/76">
+            <li class="flex items-start gap-3">
+              <i class="fas fa-phone-alt mt-1 text-[#d4ad63]"></i>
+              <a href="https://wa.me/5515992455005" target="_blank" class="transition hover:text-white">(15)
+                99245-5005</a>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-envelope mt-1 text-[#d4ad63]"></i>
+              <span>contato@lojaprogressivafashion.com.br</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <i class="fas fa-shield-alt mt-1 text-[#d4ad63]"></i>
+              <span>Ambiente seguro e vendas sujeitas à análise e disponibilidade de estoque.</span>
+            </li>
+          </ul>
+
+          <div class="mt-5 rounded-[1.5rem] border border-white/10 bg-white/5 p-4 text-sm leading-6 text-white/76">
+            <p class="font-semibold text-white">Atendimento, busca e favoritos integrados.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-white/10 px-6 py-5 text-sm text-white/64 md:px-10">
+        <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <p>
+            © 2026 <span class="font-bold text-white">Progressiva Fashion</span>. Somos afiliados da B2Club, e os
+            produtos são vendidos e entregues direto da fábrica.
+          </p>
+          <p>
+            Desenvolvimento por
+            <a href="https://github.com/classFerreiraCode" target="_blank"
+              class="font-semibold text-[#f6d5df] transition hover:text-white">
+              @classFerreiraCode
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
 
-    <!-- WhatsApp Float Button -->
+    <div data-animate="footer-block"
+      class="mx-auto mt-5 max-w-7xl rounded-[1.75rem] bg-[#b6406f] px-6 py-5 text-sm leading-7 text-white/90">
+      Todo o conteúdo do site, imagens e marcas pertencem aos seus respectivos titulares. Esta página atua como canal
+      afiliado de divulgação comercial. Em caso de divergência, prevalece o valor exibido na tela de pagamento.
+    </div>
+
     <div class="fixed bottom-6 right-6 z-50">
-        <a href="https://chat.whatsapp.com/Fvp41d8vrTaBw81BxGAWk1" target="_blank"
-            class="bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition transform hover:scale-110">
-            <i class="fab fa-whatsapp text-2xl"></i>
-        </a>
+      <a href="https://chat.whatsapp.com/Fvp41d8vrTaBw81BxGAWk1" target="_blank"
+        class="flex h-16 w-16 items-center justify-center rounded-full bg-[#19c37d] text-white shadow-[0_18px_35px_rgba(25,195,125,0.35)] transition hover:scale-105 hover:bg-[#14a86b]">
+        <i class="fab fa-whatsapp text-3xl"></i>
+      </a>
     </div>
+  </footer>
 </template>
+
 <script setup>
-        
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { animateReveal, gsap } from '@/utils/animations'
+
+const footerRef = ref(null)
+let ctx = null
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    animateReveal('[data-animate="footer-block"]', { y: 36 })
+  }, footerRef.value)
+})
+
+onBeforeUnmount(() => {
+  ctx?.revert()
+})
 </script>

@@ -18,13 +18,33 @@ const ensureLinkTag = (rel) => {
   return tag;
 };
 
+const ensureScriptTag = (id, type = "application/ld+json") => {
+  let tag = document.querySelector(`script[data-seo="${id}"]`);
+  if (!tag) {
+    tag = document.createElement("script");
+    tag.setAttribute("type", type);
+    tag.setAttribute("data-seo", id);
+    document.head.appendChild(tag);
+  }
+  return tag;
+};
+
 const setMetaContent = (attr, value, content) => {
   if (!content) return;
   const tag = ensureMetaTag(attr, value);
   tag.setAttribute("content", content);
 };
 
-export const setMeta = ({ title, description, image, url }) => {
+export const setMeta = ({
+  title,
+  description,
+  image,
+  url,
+  keywords,
+  robots = "index, follow",
+  type = "website",
+  schema,
+}) => {
   if (title) {
     document.title = title;
     setMetaContent("property", "og:title", title);
@@ -48,7 +68,22 @@ export const setMeta = ({ title, description, image, url }) => {
     canonical.setAttribute("href", url);
   }
 
+  if (keywords) {
+    setMetaContent("name", "keywords", keywords);
+  }
+
+  if (robots) {
+    setMetaContent("name", "robots", robots);
+  }
+
+  setMetaContent("property", "og:type", type);
+  setMetaContent("property", "og:locale", "pt_BR");
   setMetaContent("name", "twitter:card", "summary_large_image");
+
+  if (schema) {
+    const schemaTag = ensureScriptTag("structured-data");
+    schemaTag.textContent = JSON.stringify(schema);
+  }
 };
 
 export const truncateText = (value, maxLength = 160) => {

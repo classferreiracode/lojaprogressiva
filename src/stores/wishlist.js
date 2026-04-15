@@ -16,10 +16,14 @@ export const useWishlistStore = defineStore("wishlist", () => {
   const isInWishlist = (product) => {
     return items.value.some(p => p.id === product.id);
   };
+
+  const clear = () => {
+    items.value = [];
+  };
   
   watch(items, (newItems) => {
     localStorage.setItem("wishlist", JSON.stringify(newItems));
   }, { deep: true });
   
-  return { items, toggle, isInWishlist };
+  return { items, toggle, isInWishlist, clear };
 });

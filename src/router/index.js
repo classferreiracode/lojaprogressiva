@@ -9,8 +9,10 @@ import { setMeta } from "@/utils/seo";
 const brandName = "Loja Progressiva Fashion";
 const baseUrl = "https://www.lojaprogressivafashion.com.br";
 const defaultDescription =
-  "Produtos oficiais, vendidos e entregues direto da fábrica. Compra segura, estoque atualizado e envio rápido.";
+  "Loja parceira com curadoria Ybera e Fashion Gold para progressiva, cronograma capilar, hidratação, nutrição, reconstrução e manutenção diária.";
 const defaultImage = `${baseUrl}/logo-progressiva.png`;
+const defaultKeywords =
+  "ybera, fashion gold, progressiva fashion gold, cronograma capilar, alisamento e controle de frizz, hidratação capilar, reconstrução capilar, nutrição capilar, loja ybera";
 
 const buildTitle = (pageTitle) => {
   if (!pageTitle || pageTitle === brandName) return brandName;
@@ -22,15 +24,26 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomeView,
-    meta: { title: brandName, description: defaultDescription },
+    meta: {
+      title: "Ybera e Fashion Gold",
+      description:
+        "Curadoria de tratamentos Ybera e Fashion Gold para alisamento, cronograma capilar, hidratação, brilho espelhado, reconstrução e cuidado diário.",
+      keywords:
+        "ybera fashion gold, progressiva fashion gold, cronograma capilar fashion gold, liso perfeito, cacho perfeito, loja ybera",
+      type: "website",
+    },
   },
   {
     path: "/loja",
     name: "Loja",
     component: LojaView,
     meta: {
-      title: "Loja",
-      description: "Confira a linha completa de produtos Progressiva Fashion.",
+      title: "Loja Ybera e Fashion Gold",
+      description:
+        "Explore produtos Ybera e Fashion Gold por necessidade: alisamento e controle de frizz, cronograma capilar, hidratação, reconstrução, nutrição e manutenção.",
+      keywords:
+        "produtos ybera, produtos fashion gold, alisamento e controle de frizz, cronograma capilar, reconstrução anti-quebra, hidratação brilho espelhado",
+      type: "website",
     },
   },
   {
@@ -39,7 +52,10 @@ const routes = [
     component: ProdutoView,
     meta: {
       title: "Produto",
-      description: "Detalhes completos do produto, benefícios e compra segura.",
+      description: "Detalhes do produto, benefícios, modo de uso, faixa de preço e compra segura.",
+      keywords:
+        "produto ybera, produto fashion gold, progressiva, mascara capilar, shampoo profissional, tratamento capilar",
+      type: "product",
     },
   },
   {
@@ -47,8 +63,11 @@ const routes = [
     name: "Wishlist",
     component: WishlistView,
     meta: {
-      title: "Wishlist",
-      description: "Seus produtos favoritos salvos para comprar depois.",
+      title: "Favoritos",
+      description: "Salve seus produtos Ybera e Fashion Gold favoritos para comparar tratamentos e comprar depois.",
+      keywords:
+        "favoritos ybera, wishlist fashion gold, produtos salvos, tratamentos capilares favoritos",
+      type: "website",
     },
   },
   {
@@ -57,7 +76,11 @@ const routes = [
     component: ContatoView,
     meta: {
       title: "Contato",
-      description: "Fale com a equipe e tire suas dúvidas rapidamente.",
+      description:
+        "Fale com a equipe para tirar dúvidas sobre progressiva, cronograma capilar, manutenção, pedidos e produtos Ybera e Fashion Gold.",
+      keywords:
+        "contato ybera, contato fashion gold, suporte progressiva, dúvidas cronograma capilar, atendimento loja ybera",
+      type: "website",
     },
   },
 ];
@@ -71,8 +94,31 @@ router.afterEach((to) => {
   const title = buildTitle(to.meta?.title);
   const description = to.meta?.description || defaultDescription;
   const image = to.meta?.image || defaultImage;
+  const keywords = to.meta?.keywords || defaultKeywords;
   const url = new URL(to.fullPath, baseUrl).toString();
-  setMeta({ title, description, image, url });
+  const type = to.meta?.type || "website";
+  setMeta({
+    title,
+    description,
+    image,
+    url,
+    keywords,
+    type,
+    schema: {
+      "@context": "https://schema.org",
+      "@type": type === "product" ? "WebPage" : "CollectionPage",
+      name: title,
+      description,
+      url,
+      image,
+      inLanguage: "pt-BR",
+      isPartOf: {
+        "@type": "WebSite",
+        name: brandName,
+        url: baseUrl,
+      },
+    },
+  });
 });
 
 export default router;

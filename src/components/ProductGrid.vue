@@ -1,84 +1,106 @@
 <template>
-    <section class="py-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
-                <div v-for="(produto, index) in paginated" :key="index"
-                    class="bg-white rounded-lg shadow hover:shadow-lg transition relative">
-                
-                    <img :src="produto.image" class="w-full h-48 object-cover rounded-t" />
-                    <div class="absolute top-2 right-2">
-                        <button @click="toggleWishlist(produto)"
-                            class="bg-white rounded-full p-2 shadow hover:bg-pink-100 transition">
-                            <i :class="['fa-heart', wishlist.isInWishlist(produto.id) ? 'fas text-red-500' : 'far text-pink-600']"
-                                class="text-lg"></i>
-                        </button>
-                    </div>
-                    <router-link :to="`/produto/${produto.slug}`" class="block">
-                    <div class="p-4">
-                        <h3 class="text-lg font-semibold text-gray-800 mb-1 truncate">{{ produto.title }}</h3>
-                        <p class="text-sm text-gray-500 truncate">{{ produto.description }}</p>
-                        <div v-if="produto.price_regular && produto.price_sale < produto.price_regular" class="space-x-2">
-                            <span class="text-gray-400 line-through text-sm">
-                                R$ {{ produto.price_regular }}
-                            </span>
-                            <span class="text-pink-600 font-bold text-lg">
-                                R$ {{ produto.price_sale }}
-                            </span>
-                            <span class="bg-pink-100 text-pink-600 text-xs font-bold px-2 py-1 rounded-full">
-                                -{{ desconto(produto) }}%
-                            </span>
-                        </div>
-                        <div v-else>
-                            <span class="text-pink-600 font-bold text-lg">
-                                R$ {{ produto.price_sale }}
-                            </span>
-                        </div>
-                    </div>
-                </router-link>
-                </div>
-            </div>
-
-            <!-- Paginação -->
-            <div class="flex justify-center space-x-2">
-                <button @click="pagina--" :disabled="pagina === 1" class="px-4 py-2 border rounded disabled:opacity-30">
-                    Anterior
-                </button>
-                <button @click="pagina++" :disabled="pagina >= totalPaginas" class="px-4 py-2 border rounded disabled:opacity-30">
-                    Próximo
-                </button>
-            </div>
+  <section ref="gridRef" class="py-6">
+    <div class="mx-auto max-w-7xl">
+      <div
+        class="mb-8 flex flex-col gap-3 rounded-[2rem] border border-[#782744]/10 bg-white/80 p-6 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="text-xs font-extrabold uppercase tracking-[0.22em] text-[#782744]">Vitrine completa</p>
+          <h2 class="brand-heading mt-2 text-3xl font-semibold text-[#1f1720]">Catalogo comercial</h2>
         </div>
-    </section>
+        <div class="text-sm leading-6 text-[#6e5b64] md:text-right">
+          <p>{{ props.produtos.length }} produtos disponiveis para compra.</p>
+          <p v-if="totalPaginas > 1">Pagina {{ pagina }} de {{ totalPaginas }}</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div v-for="(produto, index) in paginated" :key="produto.id || produto.slug || index" data-animate="grid-card">
+          <ProductCard :product="produto" @toggle-wishlist="toggleWishlist" />
+        </div>
+      </div>
+
+      <div v-if="totalPaginas > 1" class="mt-10 flex flex-wrap items-center justify-center gap-3">
+        <button @click="irParaPagina(pagina - 1)" :disabled="pagina === 1"
+          class="secondary-cta disabled:cursor-not-allowed disabled:opacity-40">
+          Anterior
+        </button>
+
+        <button v-for="numero in paginasVisiveis" :key="numero" @click="irParaPagina(numero)"
+          :class="numero === pagina ? 'primary-cta !px-5 !py-3' : 'secondary-cta !px-5 !py-3'">
+          {{ numero }}
+        </button>
+
+        <button @click="irParaPagina(pagina + 1)" :disabled="pagina >= totalPaginas"
+          class="primary-cta disabled:cursor-not-allowed disabled:opacity-40">
+          Proximo
+        </button>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
+import ProductCard from '@/components/ProductCard.vue'
 import { useWishlistStore } from '@/stores/wishlist'
+import { animateStaggerChildren, gsap } from '@/utils/animations'
 const wishlist = useWishlistStore()
+const gridRef = ref(null)
+let ctx = null
 
 const props = defineProps({
-    produtos: Array,
-    porPagina: {
-        type: Number,
-        default: 16
-    }
+  produtos: Array,
+  porPagina: {
+    type: Number,
+    default: 16
+  }
 })
 
 const pagina = ref(1)
 
-const totalPaginas = computed(() => Math.ceil(props.produtos.length / props.porPagina))
+const totalPaginas = computed(() => Math.max(1, Math.ceil((props.produtos?.length || 0) / props.porPagina)))
 const paginated = computed(() => {
-    const start = (pagina.value - 1) * props.porPagina
-    return props.produtos.slice(start, start + props.porPagina)
+  const start = (pagina.value - 1) * props.porPagina
+  return props.produtos.slice(start, start + props.porPagina)
+})
+
+const paginasVisiveis = computed(() => {
+  const total = totalPaginas.value
+  const atual = pagina.value
+  const inicio = Math.max(1, atual - 2)
+  const fim = Math.min(total, inicio + 4)
+  const primeiro = Math.max(1, fim - 4)
+
+  return Array.from({ length: fim - primeiro + 1 }, (_, index) => primeiro + index)
 })
 
 function toggleWishlist(produto) {
-    wishlist.toggle(produto)
+  wishlist.toggle(produto)
 }
 
-function desconto(produto) {
-    const p = produto.price_sale
-    const o = produto.price_regular
-    return Math.round(((o - p) / o) * 100)
+function irParaPagina(numero) {
+  if (numero < 1 || numero > totalPaginas.value) return
+  pagina.value = numero
+  gridRef.value?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 }
+
+onMounted(() => {
+  ctx = gsap.context(() => {
+    animateStaggerChildren(gridRef.value, '[data-animate="grid-card"]')
+  }, gridRef.value)
+})
+
+onBeforeUnmount(() => {
+  ctx?.revert()
+})
+
+watch(() => props.produtos, () => {
+  pagina.value = 1
+}, { deep: true })
+
+watch(totalPaginas, (novoTotal) => {
+  if (pagina.value > novoTotal) {
+    pagina.value = novoTotal
+  }
+})
 </script>

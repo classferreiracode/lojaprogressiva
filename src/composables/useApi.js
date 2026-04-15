@@ -1,6 +1,5 @@
 import { ref } from "vue";
-
-const baseURL = "https://api.lojaprogressivafashion.com.br/public/api";
+import { apiBaseUrl } from "@/config/api";
 
 export function useApi(endpoint) {
   const data = ref(null);
@@ -13,13 +12,13 @@ export function useApi(endpoint) {
       abortController.value.abort();
     }
     
-    abortController.value = new AbortController();
+      abortController.value = new AbortController();
     loading.value = true;
     error.value = null;
     
     try {
       const query = new URLSearchParams(params).toString();
-      const response = await fetch(`${baseURL}/${endpoint}?${query}`, {
+      const response = await fetch(`${apiBaseUrl}/${endpoint}?${query}`, {
         signal: abortController.value.signal
       });
       
