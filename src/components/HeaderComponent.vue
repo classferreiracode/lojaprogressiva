@@ -78,8 +78,8 @@
               <li><RouterLink to="/contato" class="transition hover:text-[#b6406f]">Contato</RouterLink></li>
             </ul>
 
-            <div data-animate="header-item" class="w-full max-w-xl">
-              <SearchComponent />
+            <div data-animate="header-item" class="ml-auto flex justify-end">
+              <SearchComponent compact />
             </div>
           </div>
 
